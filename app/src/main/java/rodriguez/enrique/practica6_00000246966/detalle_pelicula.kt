@@ -1,6 +1,8 @@
 package rodriguez.enrique.practica6_00000246966
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -11,17 +13,31 @@ import androidx.core.view.WindowInsetsCompat
 class detalle_pelicula : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_detalle_pelicula)
 
-        var iv_pelicula_image: ImageView = findViewById(R.id.iv_pelicula_imagen)
-        var tv_nombre_pelicula: TextView = findViewById(R.id.tv_nombre_pelicula)
-        var tv_pelicula_desc: TextView = findViewById(R.id.tv_pelicula_desc)
+        val btnBuyTicket: Button = findViewById(R.id.buyTickets)
 
-        var bundle=intent.extras
+        val iv_pelicula_image: ImageView = findViewById(R.id.iv_pelicula_imagen)
+        val tv_nombre_pelicula: TextView = findViewById(R.id.tv_nombre_pelicula)
+        val tv_pelicula_desc : TextView = findViewById(R.id.tv_pelicula_desc)
+
+        val bundle = intent.extras
         if (bundle!=null){
             iv_pelicula_image.setImageResource(bundle.getInt("header"))
             tv_nombre_pelicula.setText(bundle.getString("titulo"))
             tv_pelicula_desc.setText(bundle.getString("sinopsis"))
+        }
+
+        btnBuyTicket.setOnClickListener {
+            var intent : Intent = Intent(this, SeatSelection::class.java)
+            startActivity(intent)
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
     }
 }

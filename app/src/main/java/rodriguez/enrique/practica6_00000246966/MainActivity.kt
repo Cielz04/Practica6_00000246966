@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val button : Button = findViewById(R.id.boton)
 
         button.setOnClickListener(){
-            var intent: Intent = Intent(this, Catalogo::class.java)
+            var intent: Intent = Intent(this, catalogo::class.java)
             startActivity(intent)
         }
     }

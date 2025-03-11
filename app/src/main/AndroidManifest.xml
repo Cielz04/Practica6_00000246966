@@ -16,7 +16,7 @@
             android:name=".SeatSelection"
             android:exported="false" />
         <activity
-            android:name=".Catalogo"
+            android:name=".catalogo"
             android:exported="false" />
         <activity
             android:name=".detalle_pelicula"
